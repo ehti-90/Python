@@ -4,7 +4,8 @@ class Score(Turtle):
     def __init__(self):
         super().__init__()
         self.score = 0
-        self.high_score = 0 #   for higest score
+        with open("D:\D Extended\Codies\Python\practice projects\Turtle_Module_Projects\snake game\data.txt") as data:
+            self.high_score = int(data.read())
         
         self.color("white") # we are making the colour of turtle that make sthe scoreboard white
         self.hideturtle()   # we hide it
@@ -25,6 +26,9 @@ class Score(Turtle):
         self.clear()
         if self.score > self.high_score:
             self.high_score = self.score
+            with open(".\Turtle_Module_Projects\snake game\data.txt",mode='w') as data:
+              data.write(f"{self.high_score}")  
+
         self.score = 0
         self.write_score()
         
