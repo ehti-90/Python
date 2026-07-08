@@ -41,6 +41,15 @@ class Snake:
         self.head.forward(MOVE_DISTANCE)  # we made the logic in loop such that only doing anything--
                                           # to the first object the restt follows the first
     
+    def reset_snake(self):
+        for seg in self.all_turtles:
+            seg.goto(1000,1000)
+            
+        self.all_turtles.clear()
+        self.create_snake()
+        self.head = self.all_turtles[0]
+        
+    
     def up(self):
         if self.head.heading() != DOWN: # we fnid square heading direction and check if its NOT DOWN
             self.head.setheading(UP)    # then we can set head direction UP/90

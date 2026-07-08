@@ -41,15 +41,16 @@ while game_on:
         
     # checks if snake crossed window borders   
     if snake.head.xcor() > 390 or  snake.head.xcor() < -390 or snake.head.ycor() > 390 or snake.head.ycor() < - 390:
-        game_on = False
-        score.game_over()
+        score.reset()
+        snake.reset_snake()
         
     # check if snake head touches any segment
     for seg in snake.all_turtles[1:]:
         
-        if snake.head.distance(seg) < 10:   # if distance between any seg and head is less then 10 then game over
-            game_on = False
-            score.game_over()
+        if snake.head.distance(seg) < 10:   # if distance between any seg and head is less then 10 then game over 
+            score.reset()
+            snake.reset_snake()
+
             
 
 screen.mainloop()
