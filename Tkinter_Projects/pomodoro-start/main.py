@@ -40,7 +40,7 @@ reset_button.grid(row=2,column=3)
 
 
 canvas = tk.Canvas(width=300,height=300,bg=PINK,highlightthickness=0) 
-tomato_image = tk.PhotoImage(file="tomato.png") # reads photo from a file at a particular location
+tomato_image = tk.PhotoImage(file="practice projects\Tkinter_Projects\pomodoro-start\\tomato.png") # reads photo from a file at a particular location
 canvas.create_image(150,150,image=tomato_image)# coordinates on the canvas
 canvas.create_text(150,150,text="00:00",fill="white",font=(FONT_NAME,20,"bold"))# writing on top of canvas image
 canvas.grid(row=1,column=2)
