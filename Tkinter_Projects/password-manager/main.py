@@ -1,13 +1,15 @@
 import tkinter as tk
 from tkinter import messagebox
 import password_gen
+import pyperclip
+
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password():
     my_password = password_gen.generate()
 
-    password_input.delete(0,"end")  # Delete everything previous when clicked again 
-    print(my_password)              # if we dont like it it will generate a new one
+    password_input.delete(0,"end")  # Delete everything previous when clicked again # if we dont like it it will generate a new one                            
+    pyperclip.copy(my_password)     # Directly copied to our clipboard You can past it on go.   
     password_input.insert(0, my_password)
 
 
@@ -63,11 +65,11 @@ pass_label.grid(row=3,column=0)
 
 
 #ADD BUTTON
-add_butt = tk.Button(text="ADD",width=44,bg="green",command=save_to_file)
+add_butt = tk.Button(text="ADD",width=44,bg="#212830",fg="white",command=save_to_file)
 add_butt.grid(row=4,column=1,columnspan=2)
 
 #GENERATE BUTTON
-generate_pass = tk.Button(text="  Generate ",padx=10,bg="yellow",command=generate_password)
+generate_pass = tk.Button(text="  Generate ",padx=10,bg="#2e9a40",command=generate_password)
 generate_pass.grid(row=3,column=2,columnspan=3)
 
 
@@ -77,7 +79,7 @@ web_input.focus()
 web_input.grid(row=1,column=1,columnspan=2)
 #EMAIL ENTRY
 email_input = tk.Entry(width=53)
-email_input.insert(0, "ehtishamhassan396@gmail.com") # my common most email
+email_input.insert(0, "dummy69@gmail.com") # my common most email
 email_input.grid(row=2,column=1,columnspan=2)
 #PASSWORD ENTRY
 password_input = tk.Entry(width=38)
