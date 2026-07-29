@@ -1,9 +1,7 @@
 # Python Projects
 
-This repository contains the projects I created while completing Python Course.
-
-The projects here are made by me for practice. 
+This repository contains the projects I created for different python Libraries/Modules.
 
 ## Purpose
 
-The purpose of this repository is to store my projects, and improve my Python programming skills over time.
+These projects are made entirely through hand written code to practice, improve python programming, improve code analysis, understanding how to use different Libraries and create your own. Ai written code is used widely in tech fields. Better code understanding means you fix what AI missed and you get better result.
