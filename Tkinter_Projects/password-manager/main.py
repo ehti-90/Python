@@ -2,8 +2,27 @@ import tkinter as tk
 from tkinter import messagebox
 import password_gen
 import pyperclip
+import json
 
 
+# ----------------------------  Search our Datafile ------------------------------- #
+
+def search_me():
+    search_website = web_input.get()
+   
+    
+    try:
+        with open(file=r"practice projects\Tkinter_Projects\password-manager\password.json",mode="r") as file:
+            dictionary_data = json.load(file)
+        
+    except (FileNotFoundError,json.JSONDecodeError):
+        messagebox.showerror(message="No DataFile Found")
+    else:
+            if search_website in dictionary_data:
+                messagebox.showinfo(title=f"{search_website}", message=f"email: {dictionary_data[search_website]["email"]}\n password: {dictionary_data[search_website]["password"]}")
+            else:
+                 messagebox.showinfo(title=f"{search_website}", message="Does not exist in Datafile")
+                
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password():
     my_password = password_gen.generate()
@@ -21,21 +40,38 @@ def save_to_file():
     pas = password_input.get()
     email = email_input.get()
     
+    new_data = {
+        web:{
+            "email":email,
+            "password":pas
+        }
+        }
     
     
     if len(web) == 0 or len(pas) == 0:
         retry = messagebox.showinfo(title="Error", message="Fill the Entries")
     
-    else:
-        confirmation = messagebox.askokcancel(title="Confirmation",message=f"Website : {web}\n Password  : {pas}\n Email : {email}\n Are You Sure ?")
-
-        if confirmation:
-            
-            with open(file="password.txt",mode="a") as data:
-                data.write(f"{web} | {email} | {pas}\n")
-                web_input.delete(0, "end")
-                password_input.delete(0, "end") #Deletes the input we gave after clicking add button
+    else:  
+        try:      
+            with open(file=r"practice projects\Tkinter_Projects\password-manager\password.json",mode="r") as data:
+                file_data = json.load(data)  #   reading old data to data var
+                 
                 
+        except (FileNotFoundError, json.JSONDecodeError):
+            file_data = {}
+            file_data.update(new_data)
+            with open(file=r"practice projects\Tkinter_Projects\password-manager\password.json",mode="w") as file:
+                json.dump(file_data,file,indent=4) 
+        else:
+            file_data.update(new_data)# if file not found or empty make dict and update the dictionary
+                
+            with open(file=r"practice projects\Tkinter_Projects\password-manager\password.json",mode="w") as file:
+                json.dump(file_data,file,indent=4) # load json into file
+                
+        finally:  
+            web_input.delete(0, "end")
+            password_input.delete(0, "end") #Deletes the input we gave after clicking add button
+            web_input.focus()
     
 # ---------------------------- UI SETUP ------------------------------- #
 
@@ -48,7 +84,7 @@ window.config(padx=80,pady=80,bg="Black")
 
 #Canvas 
 canvas = tk.Canvas(width=200,height=200,bg="black",highlightthickness=0)
-lock_image = tk.PhotoImage(file="practice projects\Tkinter_Projects\password-manager\logo.png")
+lock_image = tk.PhotoImage(file=r"practice projects\Tkinter_Projects\password-manager\logo.png")
 canvas.create_image(140,100,image=lock_image) # x and y on canvas
 canvas.grid(row=0,column=1)
 
@@ -72,11 +108,14 @@ add_butt.grid(row=4,column=1,columnspan=2)
 generate_pass = tk.Button(text="  Generate ",padx=10,bg="#2e9a40",command=generate_password)
 generate_pass.grid(row=3,column=2,columnspan=3)
 
+#SEARCH BUTTON
+search_button = tk.Button(text="  Search ",padx=15,bg="yellow",fg="black",command=search_me)
+search_button.grid(row=1,column=2,columnspan=2)
 
 # WEB ENTRY
-web_input = tk.Entry(width=53)
+web_input = tk.Entry(width=38)
 web_input.focus()
-web_input.grid(row=1,column=1,columnspan=2)
+web_input.grid(row=1,column=1,columnspan=1)
 #EMAIL ENTRY
 email_input = tk.Entry(width=53)
 email_input.insert(0, "dummy69@gmail.com") # my common most email
