@@ -18,7 +18,7 @@ class QuizBrain:
         q_text = html.unescape(self.current_question.text) # unescape method from html
         return f"Q.{self.question_number}: {q_text} "
         
-
+    # checks ansewer for our user input
     def check_answer(self, user_answer):
         correct_answer = self.current_question.answer
         if user_answer.lower() == correct_answer.lower():
