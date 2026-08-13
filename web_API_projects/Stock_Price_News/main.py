@@ -65,7 +65,7 @@ diff_percent = abs((difference / before_yestarday_closing) * 100 )
 #------------------------------------------ COMPANY NEWS --------------------------------#
 
 
-if diff_percent > 1:
+if diff_percent > 5:
     
     parameters_2 = {
         "qInTitle": COMPANY_NAME,
