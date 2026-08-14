@@ -56,9 +56,9 @@ difference = (yestarday_closing) - (before_yestarday_closing)
 up_down  = ""
 
 if difference > 0:
-    up_down = "^"
+    up_down = "(Up)"
 else:
-    up_down = "v"
+    up_down = "(Down)"
 
 diff_percent = abs((difference / before_yestarday_closing) * 100 )
 
@@ -93,7 +93,7 @@ if diff_percent > 5:
         connection.sendmail(
             from_addr=MY_EMAIL,
             to_addrs=recipent_email,
-            msg=f"Subject: Stock Alert !!! \n\n {COMPANY_NAME} : {up_down} {round((diff_percent),2)}\n Headline: {title}\n Breif: {content} \n source: {uurl}"
+            msg=f"Subject: Stock Alert !!! \n\n Company : {COMPANY_NAME}\n Change : {up_down} {round((diff_percent),2)}\n Headline: {title}\n Breif: {content} \n source: {uurl}"
     )
 
 
