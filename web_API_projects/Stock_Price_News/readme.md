@@ -8,7 +8,7 @@ Checks TSLA's daily closing price. If it moved more than 5% from the previous da
 
 1. Gets yesterday's and the day-before's closing price from Alpha Vantage (a stock market data API).
 2. Calculates the percentage change.
-3. If the change is greater than 1%, it pulls the top news article about the company from NewsAPI.
+3. If the change is greater than 5%, it pulls the top news article about the company from NewsAPI.
 4. Sends you an email via Gmail's SMTP server (SMTP = Simple Mail Transfer Protocol, the protocol used to send email) with the price change and headline.
 
 ## Setup
