@@ -1,4 +1,4 @@
-# Workout Tracker with Google Sheets & Sheety API 🏋️‍♂️
+# Workout Tracker with Google Sheets & Sheety API 
 
 A Python script that tracks your workouts using Natural Language Processing. Simply type what exercises you did in plain English (e.g., *"Ran 3 miles in the mountains"*), and it will automatically calculate duration and calories burned, then log the entry directly into your Google Sheet.
 
